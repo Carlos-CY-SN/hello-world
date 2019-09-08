@@ -1,0 +1,11 @@
+import urllib.request
+from bs4 import BeautifulSoup
+
+html = urllib.request.urlopen('https://www.douban.com/')
+http = BeautifulSoup(html, 'html.parser')
+with open('douban.txt','w',encoding = 'utf-8') as f:
+  for i in http.find_all('a'):
+    url = i.get('href')
+    print(url)
+    f.write(str(url))
+    f.write('\n')
